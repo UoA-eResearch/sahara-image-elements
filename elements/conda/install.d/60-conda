@@ -1,0 +1,26 @@
+# #!/bin/bash
+# This script installs Spark
+# More documentation in the README.md file
+
+if [ "${DIB_DEBUG_TRACE:-0}" -gt 0 ]; then
+   set -x
+fi
+set -eu
+set -o pipefail
+
+tmp_dir=/tmp/conda
+pushd $tmp_dir
+
+echo "Installing Anaconda"
+conda_install_folder=/opt/conda
+conda_url=$(cat conda_url.txt)
+conda_file=$(basename $conda_url)
+bash $conda_file -b -p $conda_install_folder
+rm $conda_file
+mv conda_url.txt $conda_install_folder
+
+echo "Copying toree-pip.tar"
+cp "$(dirname $0)/../resources/toree-pip.tar" $conda_install_folder
+
+popd
+rm -Rf $tmp_dir

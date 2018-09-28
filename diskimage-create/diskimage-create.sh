@@ -625,7 +625,7 @@ if [ -z "$PLUGIN" -o "$PLUGIN" = "spark" ]; then
     # Tell the cloudera element to install only hdfs
     export DIB_CDH_HDFS_ONLY=1
 
-    ubuntu_elements_sequence="$JAVA_ELEMENT swift_hadoop spark hadoop-cloudera s3_hadoop"
+    ubuntu_elements_sequence="$JAVA_ELEMENT swift_hadoop spark hadoop-cloudera s3_hadoop conda"
     export ubuntu_image_name=${ubuntu_spark_image_name:-"ubuntu_sahara_spark_latest"}
 
     # Creating Ubuntu cloud image
